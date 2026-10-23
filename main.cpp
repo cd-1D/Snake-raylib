@@ -14,10 +14,10 @@ int main()
     while (!WindowShouldClose())
     {
         game.updataSnake();
-        food.foodSpawn(game.returnRecHead());
+        bool is_Ate = food.foodSpawn(game.returnRecHead());
         BeginDrawing();
         ClearBackground(BLACK);
-            game.drawSnake();
+            game.drawSnake(is_Ate);
             food.foodDraw();
         EndDrawing();
     }

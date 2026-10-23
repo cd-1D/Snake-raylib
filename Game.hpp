@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib.h"
+#include <vector>
 class game
 {
 private:
@@ -8,17 +9,20 @@ private:
     float score = 0.0f;
     Vector2 SizeHead = {20, 20};
     Vector2 Position = {300, 300};
+    std::vector<Vector2> body {Position};
     bool flag = false;
     enum dir
     {
         left,
         right,
         up,
-        down
+        down,
+        stop
     };
     dir Directory = up;
+    int element = 3;
 public:
-    void drawSnake();
+    void drawSnake(bool is_Ate);
     void updataSnake();
     Rectangle returnRecHead();   
 };

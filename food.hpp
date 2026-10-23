@@ -1,12 +1,15 @@
 #pragma once
 #include "raylib.h"
-class food{
-    private:
-        Vector2 Position = {float(GetRandomValue(5, 595)), float(GetRandomValue(5, 595))};
-        bool flagFirstPosition = true;
-    public:
-        Vector2 ReturnPosFood();
-        void foodSpawn(Rectangle SizeHead);
-        void foodDraw();
-};
+class food
+{
+private:
+    Vector2 Position = {float(GetRandomValue(5, 595)), float(GetRandomValue(5, 595))};
+    bool flagFirstPosition = true;
+    bool is_ate = false;
 
+public:
+    Vector2 ReturnPosFood();
+    bool foodSpawn(Rectangle SizeHead);
+    void foodDraw();
+    bool returnIsAte();
+};
