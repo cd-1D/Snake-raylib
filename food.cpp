@@ -11,11 +11,12 @@ bool food::foodSpawn(Rectangle SizeHead)
     }
     else
     {
-        if (CheckCollisionCircleRec(food::ReturnPosFood(), 10, SizeHead))
+        if (CheckCollisionCircleRec(food::ReturnPosFood(),10 , SizeHead))
         {
             std::cout << "Collision! " << std::endl;
             Position = {float(GetRandomValue(5, 595)), float(GetRandomValue(5, 595))};
             is_ate = true;
+            score++;
         }else{
             is_ate = false;
         }
@@ -30,4 +31,7 @@ void food::foodDraw()
 Vector2 food::ReturnPosFood()
 {
     return Position;
+}
+int food::getscore(){
+    return score;
 }

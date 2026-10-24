@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include <vector>
-class game
+class Snake
 {
 private:
     float SHValue = 20;
@@ -23,6 +23,7 @@ private:
     int element = 3;
 public:
     void drawSnake(bool is_Ate);
-    void updataSnake();
+    void updataSnake(bool pause);
+    void checkcollision();
     Rectangle returnRecHead();   
 };

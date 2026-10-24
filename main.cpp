@@ -1,26 +1,40 @@
 #include <iostream>
 #include "raylib.h"
-#include "Game.hpp"
+#include "Snake.hpp"
 #include "food.hpp"
-
+#include "UI.hpp"
 int main()
-{
+{   
+    bool pause = false;
     SetTraceLogLevel(LOG_NONE);
     SetTargetFPS(10);
     InitWindow(600, 600, "Game");
-    game game;
+    Snake snake;
     food food;
-
+    UI ui;
     while (!WindowShouldClose())
-    {
-        game.updataSnake();
-        bool is_Ate = food.foodSpawn(game.returnRecHead());
+    {   
+        if(IsKeyPressed(KEY_SPACE) && pause == false){
+            pause = true;
+        }else if (IsKeyPressed(KEY_SPACE))
+        {
+            pause = false;
+        }
+        
+        snake.updataSnake(pause);
+        bool is_Ate = food.foodSpawn(snake.returnRecHead());
         BeginDrawing();
+        snake.checkcollision();
         ClearBackground(BLACK);
-            game.drawSnake(is_Ate);
+            snake.drawSnake(is_Ate);
             food.foodDraw();
+            if(pause){
+                ui.pause();
+            }
+            ui.score(food.getscore());
         EndDrawing();
     }
+    
     CloseWindow();
     return 0;
 }
